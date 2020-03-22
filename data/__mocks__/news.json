@@ -1,0 +1,45 @@
+{
+  "indexCount": 36579,
+  "maxResults": 100,
+  "offset": 0,
+  "news": [
+    {
+      "aspectSet": "article",
+      "modelVersion": "1",
+      "id": "0f738974-6c63-11ea-89df-41bea055720b",
+      "apiUrl": "https://api.ft.com/content/0f738974-6c63-11ea-89df-41bea055720b",
+      "title": {
+        "title": "Coronavirus cases soar in US with New York worst hit"
+      },
+      "location": {
+        "uri": "https://www.ft.com/content/0f738974-6c63-11ea-89df-41bea055720b"
+      },
+      "summary": {
+        "excerpt": "...Paul became the first known US senator to test positive for Covid-19. “He is feeling fine and is in quarantine,” read a..."
+      },
+      "editorial": {
+        "subheading": "Rand Paul becomes first senator to test positive for Covid-19",
+        "byline": "Alistair Gray in New York"
+      }
+    },
+    {
+      "aspectSet": "article",
+      "modelVersion": "1",
+      "id": "ca4e0db0-6aaa-11ea-800d-da70cff6e4d3",
+      "apiUrl": "https://api.ft.com/content/ca4e0db0-6aaa-11ea-800d-da70cff6e4d3",
+      "title": {
+        "title": "How Singapore waged war on coronavirus"
+      },
+      "location": {
+        "uri": "https://www.ft.com/content/ca4e0db0-6aaa-11ea-800d-da70cff6e4d3"
+      },
+      "summary": {
+        "excerpt": "...outbreak, Singapore began preparing by ramping up laboratory capacity for mass testing and developing its own test kits..."
+      },
+      "editorial": {
+        "subheading": "Timely preparation, aggressive testing, tracing of carriers and luck helped limit impact ",
+        "byline": "Stefania Palma in Singapore"
+      }
+    }
+  ]
+}
