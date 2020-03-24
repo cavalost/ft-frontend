@@ -5,6 +5,7 @@ import App from '@/App.vue';
 import Header from '@/components/Header.vue';
 import Message from '@/components/Message.vue';
 import List from '@/components/List.vue';
+import Loading from '@/components/Loading.vue';
 import Pagination from '@/components/Pagination.vue';
 
 describe('News.vue', () => {
@@ -14,6 +15,7 @@ describe('News.vue', () => {
         expect(wrapper.find(Message).exists()).toBe(true);
         expect(wrapper.find(Message).props().data.type).toBe('info');
         expect(wrapper.find(Message).props().data.text).toBe('To begin type something');
+        expect(wrapper.find(Loading).exists()).toBe(false);
         expect(wrapper.find(Pagination).exists()).toBe(false);
 
         wrapper.find(Header).find("[data-query]").setValue("hello");
@@ -23,6 +25,7 @@ describe('News.vue', () => {
         expect(wrapper.find(List).exists()).toBe(true);
         expect(wrapper.find(List).findAll('table.o-table tbody tr').length).toBe(2);
         expect(wrapper.find(Message).exists()).toBe(false);
+        expect(wrapper.find(Loading).exists()).toBe(false);
         expect(wrapper.find(Pagination).exists()).toBe(true);
         expect(wrapper.find(Pagination).vm.currentPage).toBe(1);
         expect(wrapper.find(Pagination).vm.pages).toBe(2);
@@ -33,6 +36,7 @@ describe('News.vue', () => {
         expect(wrapper.find(List).exists()).toBe(true);
         expect(wrapper.find(List).findAll('table.o-table tbody tr').length).toBe(2);
         expect(wrapper.find(Message).exists()).toBe(false);
+        expect(wrapper.find(Loading).exists()).toBe(false);
         expect(wrapper.find(Pagination).exists()).toBe(true);
         expect(wrapper.find(Pagination).vm.currentPage).toBe(2);
         expect(wrapper.find(Pagination).vm.pages).toBe(2);
@@ -44,6 +48,7 @@ describe('News.vue', () => {
         expect(wrapper.find(Message).exists()).toBe(true);
         expect(wrapper.find(Message).props().data.type).toBe('info');
         expect(wrapper.find(Message).props().data.text).toBe('To begin type something');
+        expect(wrapper.find(Loading).exists()).toBe(false);
         expect(wrapper.find(Pagination).exists()).toBe(false);
 
         wrapper.find(Header).find("form.o-header__search-form").trigger("submit.prevent");
@@ -53,6 +58,7 @@ describe('News.vue', () => {
         expect(wrapper.find(Message).exists()).toBe(true);
         expect(wrapper.find(Message).props().data.type).toBe('error');
         expect(wrapper.find(Message).props().data.text).toBe('You have to provide a text to search!');
+        expect(wrapper.find(Loading).exists()).toBe(false);
         expect(wrapper.find(Pagination).exists()).toBe(false);
 
         wrapper.find(Header).find("[data-query]").setValue("  ");
@@ -63,6 +69,7 @@ describe('News.vue', () => {
         expect(wrapper.find(Message).exists()).toBe(true);
         expect(wrapper.find(Message).props().data.type).toBe('error');
         expect(wrapper.find(Message).props().data.text).toBe('You have to provide a text to search!');
+        expect(wrapper.find(Loading).exists()).toBe(false);
         expect(wrapper.find(Pagination).exists()).toBe(false);
 
         wrapper.find(Header).find("[data-query]").setValue("asdf");
@@ -73,6 +80,7 @@ describe('News.vue', () => {
         expect(wrapper.find(Message).exists()).toBe(true);
         expect(wrapper.find(Message).props().data.type).toBe('info');
         expect(wrapper.find(Message).props().data.text).toBe('No news found');
+        expect(wrapper.find(Loading).exists()).toBe(false);
         expect(wrapper.find(Pagination).exists()).toBe(false);
 
         wrapper.find(Header).find("[data-query]").setValue("error");
@@ -83,6 +91,7 @@ describe('News.vue', () => {
         expect(wrapper.find(Message).exists()).toBe(true);
         expect(wrapper.find(Message).props().data.type).toBe('error');
         expect(wrapper.find(Message).props().data.text).toBe('Service unavailable. Please try again later');
+        expect(wrapper.find(Loading).exists()).toBe(false);
         expect(wrapper.find(Pagination).exists()).toBe(false);
     });
 });

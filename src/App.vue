@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <Header :search="search" />
+    <Loading v-if="loading" />
     <Message
       :data="message"
       v-if="news.length === 0"
@@ -22,6 +23,7 @@ import axios from 'axios';
 import Header from './components/Header';
 import Message from './components/Message';
 import List from './components/List';
+import Loading from './components/Loading';
 import Pagination from './components/Pagination';
 import Footer from './components/Footer.vue';
 
@@ -31,6 +33,7 @@ export default {
     Header,
     Message,
     List,
+    Loading,
     Pagination,
     Footer
   },
@@ -44,7 +47,8 @@ export default {
       message: {
         type: 'info',
         text: 'To begin type something'
-      }
+      },
+      loading: false
     };
   },
   methods: {
@@ -53,6 +57,7 @@ export default {
         try {
           let maxResults = query !== this.query ? 100 : this.maxResults;
           let offset = query !== this.query ? 0 : this.offset;
+          this.loading = true;
           const { data } = await axios.get(`${process.env.VUE_APP_API_SERVER}/news?search=${query.trim()}&maxResults=${maxResults}&offset=${offset}`);
           const { indexCount, news = [] } = data;
           ({ maxResults = 100, offset = 0 } = data);
@@ -74,6 +79,8 @@ export default {
             text: 'Service unavailable. Please try again later'
           };
           this.defaultSearchValues();
+        } finally {
+          this.loading = false;
         }
       } else {
         this.message = {
@@ -85,6 +92,7 @@ export default {
     },
     searchPage(newPage, currentPage) {
       if (newPage !== currentPage) {
+        window.scrollTo(0,0);
         this.offset = this.maxResults * (newPage - 1);
         this.search(this.query);
       }
@@ -100,5 +108,5 @@ export default {
 </script>
 
 <style>
-  @import 'https://www.ft.com/__origami/service/build/v2/bundles/css?modules=o-grid@^5.1.0,o-colors@^5.1.0,o-typography@^6.1.3,o-table@^8.0.3,o-header@^8.0.2,o-buttons@^6.0.9,o-message@4.1.1,o-footer@^7.0.2';
+  @import 'https://www.ft.com/__origami/service/build/v2/bundles/css?modules=o-grid@^5.1.0,o-colors@^5.1.0,o-typography@^6.1.3,o-table@^8.0.3,o-header@^8.0.2,o-buttons@^6.0.9,o-message@4.1.1,o-loading@4.0.1,o-footer@^7.0.2';
 </style>
